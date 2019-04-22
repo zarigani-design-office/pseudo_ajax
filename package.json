@@ -1,0 +1,26 @@
+{
+  "name": "pseudo_ajax",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://zarigani-design-office@github.com/zarigani-design-office/pseudo_ajax.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zarigani-design-office/pseudo_ajax/issues"
+  },
+  "homepage": "https://github.com/zarigani-design-office/pseudo_ajax#readme",
+  "devDependencies": {
+    "parcel": "^1.12.3"
+  }
+}
