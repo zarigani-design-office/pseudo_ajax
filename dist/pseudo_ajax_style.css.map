@@ -1,0 +1,1 @@
+{"version":3,"sources":["pseudo_ajax_style.css"],"names":[],"mappings":"AAAA,KACI,0BAA0B,CAC1B,SAAU,CACV,WAAY,CACZ,gBACJ","file":"pseudo_ajax_style.css","sourceRoot":"..\\src","sourcesContent":["body{\r\n    transform:translateY(16px);\r\n    opacity: 0;\r\n    width: 640px;\r\n    margin: 24px auto;\r\n}\r\n"]}
