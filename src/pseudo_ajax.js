@@ -3,32 +3,39 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-const body = document.getElementsByTagName("body")[0];
-const loadingDom = document.createElement("div");
-const selector = document.querySelectorAll("a");
-
-document.addEventListener("DOMContentLoaded", () => {
-  //DOM構築時Bodyフェードアウト
-  body.setAttribute("style", "transform:translateY(16px);opacity:0");
-  //Loading文字
-  loadingDom.textContent = "Loading";
-  loadingDom.setAttribute(
-    "style",
-    "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center"
-  );
-  loadingDom.setAttribute("id", "loading");
-  body.parentNode.insertBefore(loadingDom, body);
-});
-window.onload = () => {
-  //Loadingの文字削除
-  body.parentNode.removeChild(loadingDom);
-  //DOM構築完了時にフェードイン
-  document
-    .getElementsByTagName("body")[0]
-    .setAttribute(
-      "style",
+//読み込み時のアニメーション
+function pseudo_ajax(
+  settings = {
+    tag: "a",
+    loadingStyle:
+      "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center",
+    beforeLoadBodyStyle: "transform:translateY(16px);opacity:0",
+    afterLoadBodyStyle:
       "transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1"
-    );
+  }
+) {
+  const body = document.getElementsByTagName("body")[0];
+  const loadingDom = document.createElement("div");
+  document.addEventListener("DOMContentLoaded", () => {
+    //DOM構築時Bodyフェードアウト
+    body.setAttribute("style", settings.beforeLoadBodyStyle);
+    //Loading文字
+    loadingDom.textContent = "Loading";
+    loadingDom.setAttribute("style", settings.loadingStyle);
+    loadingDom.setAttribute("id", "loading");
+    body.parentNode.insertBefore(loadingDom, body);
+  });
+
+  window.onload = () => {
+    //Loadingの文字削除
+    body.parentNode.removeChild(loadingDom);
+    //DOM構築完了時にフェードイン
+    document
+      .getElementsByTagName("body")[0]
+      .setAttribute("style", settings.afterLoadBodyStyle);
+  };
+
+  const selector = document.querySelectorAll(settings.tag);
   //aタグクリック時にフェード付与
   const aTags = Array.from(selector, e => {
     return e;
@@ -53,4 +60,4 @@ window.onload = () => {
       }
     });
   });
-};
+}

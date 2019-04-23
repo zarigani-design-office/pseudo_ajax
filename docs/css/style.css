@@ -1,6 +1,4 @@
 body{
-    transform:translateY(16px);
-    opacity: 0;
     width: 640px;
     margin: 24px auto;
 }

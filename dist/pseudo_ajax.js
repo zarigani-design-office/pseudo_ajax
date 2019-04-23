@@ -3,7 +3,81 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"+taq":[function(require,module,exports) {
-var t=document.getElementsByTagName("body")[0],e=document.createElement("div"),n=document.querySelectorAll("a");document.addEventListener("DOMContentLoaded",function(){t.setAttribute("style","transform:translateY(16px);opacity:0"),e.textContent="Loading",e.setAttribute("style","position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center"),e.setAttribute("id","loading"),t.parentNode.insertBefore(e,t)}),window.onload=function(){t.parentNode.removeChild(e),document.getElementsByTagName("body")[0].setAttribute("style","transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1"),Array.from(n,function(t){return t}).forEach(function(e){var n=e.href,a=e.target;e.addEventListener("click",function(e){"_blank"!==a&&(e.preventDefault(),t.setAttribute("style","transition:all 0.6s ease-in-out;transform:translateY(16px);opacity:0"),t.addEventListener("transitionend",function(){location.href=n}))})})};
-},{}]},{},["+taq"], null)
-//# sourceMappingURL=/pseudo_ajax.js.map
+function pseudo_ajax(
+  //ユーザー設定読み込み デフォルト値はundefinedとして定義
+  yourSettings = {
+    tag: undefined,
+    loadingStyle: undefined,
+    beforeLoadStyle: undefined,
+    afterLoadStyle: undefined,
+    transitionStyle: undefined
+  }
+) {
+  const yourTag = yourSettings.tag;
+  const yourLoadingStyle = yourSettings.loadingStyle;
+  const yourBeforeLoadStyle = yourSettings.beforeLoadStyle;
+  const yourAfterLoadStyle = yourSettings.afterLoadStyle;
+  const yourTransitionStyle = yourSettings.transitionStyle;
+  //ユーザー設定を実行関数に渡す。
+  pseudo_ajax_exe(
+    yourTag,
+    yourLoadingStyle,
+    yourBeforeLoadStyle,
+    yourAfterLoadStyle,
+    yourTransitionStyle
+  );
+}
+//実行関数
+function pseudo_ajax_exe(
+  //引数がundefinedの場合はデフォルト値
+  tag = "a",
+  loadingStyle = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center",
+  beforeLoadBodyStyle = "transform:translateY(16px);opacity:0",
+  afterLoadBodyStyle = "transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1",
+  transitionStyle = "transition:all 0.6s ease-in-out;transform:translateY(16px);opacity:0"
+) {
+  const body = document.getElementsByTagName("body")[0];
+  const loadingDom = document.createElement("div");
+  //読み込み時のアニメーション
+  document.addEventListener("DOMContentLoaded", () => {
+    //DOM構築時Bodyフェードアウト
+    body.setAttribute("style", beforeLoadBodyStyle);
+    //Loading文字
+    loadingDom.textContent = "Loading";
+    loadingDom.setAttribute("style", loadingStyle);
+    loadingDom.setAttribute("id", "loading");
+    body.parentNode.insertBefore(loadingDom, body);
+  });
+
+  window.onload = () => {
+    //Loadingの文字削除
+    body.parentNode.removeChild(loadingDom);
+    //DOM構築完了時にフェードイン
+    document
+      .getElementsByTagName("body")[0]
+      .setAttribute("style", afterLoadBodyStyle);
+  };
+
+  const selector = document.querySelectorAll(tag);
+  //aタグクリック時にフェード付与
+  const aTags = Array.from(selector, e => {
+    return e;
+  });
+  aTags.forEach(a => {
+    const href = a.href;
+    const target = a.target;
+    a.addEventListener("click", e => {
+      if (target !== "_blank") {
+        //target="_blank"の場合は通常挙動
+        //デフォルト挙動キャンセル
+        e.preventDefault();
+        //const body = document.getElementsByTagName("body")[0];
+        body.setAttribute("style", transitionStyle);
+        //トランジッション終わったら、ページ遷移
+        body.addEventListener("transitionend", () => {
+          location.href = href;
+        });
+      }
+    });
+  });
+}

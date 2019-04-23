@@ -24,11 +24,14 @@
       <a href="./1/">1へのリンク（軽いページ）</a>
     </p>
     <p>
-      <a href="./2/" id="pseudo">2へのリンク（重ためのページ）</a>
+      <a href="./2/" id="pseudo">2へのリンク（重ためのページ。ローディング発生））</a>
     </p>
     <p>
       <a href="http://example.com" target="_blank">target="_blank"の場合は作動しない</a>
     </p>
     <script src="./js/pseudo_ajax.js"></script>
+    <script>
+      pseudo_ajax({})
+    </script>
   </body>
 </html>
