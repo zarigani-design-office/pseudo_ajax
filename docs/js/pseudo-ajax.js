@@ -3,7 +3,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-function pseudo_ajax(
+function pseudoAjax(
   //ユーザー設定読み込み デフォルト値はundefinedとして定義
   yourSettings = {
     tag: undefined,
@@ -19,7 +19,7 @@ function pseudo_ajax(
   const yourAfterLoadStyle = yourSettings.afterLoadStyle;
   const yourTransitionStyle = yourSettings.transitionStyle;
   //ユーザー設定を実行関数に渡す。
-  pseudo_ajax_exe(
+  pseudoAjaxExe(
     yourTag,
     yourLoadingStyle,
     yourBeforeLoadStyle,
@@ -28,7 +28,7 @@ function pseudo_ajax(
   );
 }
 //実行関数
-function pseudo_ajax_exe(
+function pseudoAjaxExe(
   //引数がundefinedの場合はデフォルト値
   tag = "a",
   loadingStyle = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center",
