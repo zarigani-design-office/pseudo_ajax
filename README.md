@@ -19,7 +19,7 @@
 以下のAPIを用意しています。
 
 | API | Type | Default | 説明 |
-|---|---|---|---|
+|:---|:---|:---|:---|
 | tag | String | "a" | Ajax風を実行するセレクター |
 | loadingText | String | "Loading" | ローディング中の表示文字 |
 | loadingStyle | String | "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center" | Loadingの文字のスタイル |
