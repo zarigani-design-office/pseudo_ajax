@@ -10,7 +10,7 @@
 ```
 <script src="PATH/TO/pseudo-ajax.js"></script>
 <script>
-  pseudo_ajax()
+  pseudoAjax()
 </script>
 </body>
 ```
