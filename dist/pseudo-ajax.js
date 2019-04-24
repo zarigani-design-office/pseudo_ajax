@@ -7,6 +7,7 @@ function pseudoAjax(
   //ユーザー設定読み込み デフォルト値はundefinedとして定義
   yourSettings = {
     tag: undefined,
+    loadingText:undefined,
     loadingStyle: undefined,
     beforeLoadStyle: undefined,
     afterLoadStyle: undefined,
@@ -14,6 +15,7 @@ function pseudoAjax(
   }
 ) {
   const yourTag = yourSettings.tag;
+  const yourLoadingText = yourSettings.loadingText;
   const yourLoadingStyle = yourSettings.loadingStyle;
   const yourBeforeLoadStyle = yourSettings.beforeLoadStyle;
   const yourAfterLoadStyle = yourSettings.afterLoadStyle;
@@ -21,6 +23,7 @@ function pseudoAjax(
   //ユーザー設定を実行関数に渡す。
   pseudoAjaxExe(
     yourTag,
+    yourLoadingText,
     yourLoadingStyle,
     yourBeforeLoadStyle,
     yourAfterLoadStyle,
@@ -29,11 +32,13 @@ function pseudoAjax(
 }
 //実行関数
 function pseudoAjaxExe(
+
   //引数がundefinedの場合はデフォルト値
   tag = "a",
-  loadingStyle = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center",
-  beforeLoadBodyStyle = "transform:translateY(16px);opacity:0",
-  afterLoadBodyStyle = "transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1",
+  loadingText = "Loading",
+  loadingStyle = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-family:sans-serif",
+  beforeLoadStyle = "transform:translateY(16px);opacity:0",
+  afterLoadStyle = "transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1",
   transitionStyle = "transition:all 0.6s ease-in-out;transform:translateY(16px);opacity:0"
 ) {
   const body = document.getElementsByTagName("body")[0];
@@ -41,9 +46,9 @@ function pseudoAjaxExe(
   //読み込み時のアニメーション
   document.addEventListener("DOMContentLoaded", () => {
     //DOM構築時Bodyフェードアウト
-    body.setAttribute("style", beforeLoadBodyStyle);
+    body.setAttribute("style", beforeLoadStyle);
     //Loading文字
-    loadingDom.textContent = "Loading";
+    loadingDom.textContent = loadingText;
     loadingDom.setAttribute("style", loadingStyle);
     loadingDom.setAttribute("id", "loading");
     body.parentNode.insertBefore(loadingDom, body);
@@ -55,7 +60,7 @@ function pseudoAjaxExe(
     //DOM構築完了時にフェードイン
     document
       .getElementsByTagName("body")[0]
-      .setAttribute("style", afterLoadBodyStyle);
+      .setAttribute("style", afterLoadStyle);
   };
 
   const selector = document.querySelectorAll(tag);
@@ -63,6 +68,9 @@ function pseudoAjaxExe(
   const aTags = Array.from(selector, e => {
     return e;
   });
+  for( const aTag of aTags ){
+
+  }
   aTags.forEach(a => {
     const href = a.href;
     const target = a.target;
