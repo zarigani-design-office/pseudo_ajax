@@ -57,9 +57,10 @@ function pseudoAjaxExe(
     //Loadingの文字削除
     body.parentNode.removeChild(loadingDom);
     //DOM構築完了時にフェードイン
-    document
-      .getElementsByTagName("body")[0]
-      .setAttribute("style", afterLoadStyle);
+    body.setAttribute("style", afterLoadStyle);
+    body.addEventListener("transitionend", () => {
+      body.setAttribute("style", "");
+    });
   };
 
   //セレクタークリック時にフェード付与
@@ -72,7 +73,6 @@ function pseudoAjaxExe(
       if (target !== "_blank") {
         //デフォルト挙動キャンセル
         e.preventDefault();
-        //const body = document.getElementsByTagName("body")[0];
         body.setAttribute("style", transitionStyle);
         //トランジッション終わったら、ページ遷移
         body.addEventListener("transitionend", () => {
