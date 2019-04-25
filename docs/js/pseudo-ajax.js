@@ -36,9 +36,9 @@ function pseudoAjaxExe(
   tag = "a",
   loadingText = "Loading",
   loadingStyle = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-family:sans-serif",
-  beforeLoadStyle = "transform:translateY(16px);opacity:0",
-  afterLoadStyle = "transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1",
-  transitionStyle = "transition:all 0.6s ease-in-out;transform:translateY(16px);opacity:0"
+  beforeLoadStyle = "transform:translateY(16px);opacity:0;width:100vw;height:100vh;overflow:hidden;",
+  afterLoadStyle = "transition:transform 0.6s ease-in-out;transform:translateY(0px);opacity:1",
+  transitionStyle = "transition:transform 0.6s ease-in-out;transform:translateY(16px);opacity:0"
 ) {
   const body = document.getElementsByTagName("body")[0];
   const loadingDom = document.createElement("div");
@@ -60,7 +60,7 @@ function pseudoAjaxExe(
     body.setAttribute("style", afterLoadStyle);
     body.addEventListener("transitionend", () => {
       body.setAttribute("style", "");
-    });
+    },{once:true});
   };
 
   //セレクタークリック時にフェード付与
