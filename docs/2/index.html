@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-  />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Ajaxっぽい遷移表現 下層2</title>
-  <link rel="stylesheet" href="../css/style.css">
-
-</head>
-<body>
-<h1>タイトル：ページ2</h1>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque dicta
-  dolore dolorum eaque, eos facere fugit impedit magnam natus nemo officia,
-  pariatur tempore totam veritatis, voluptates. Cumque iure magnam officiis!
-</p>
-<p>
-  <img src="https://picsum.photos/1920/?random" alt="" width="640" />
-  <img src="https://picsum.photos/1920/?random&blur" alt="" width="640" />
-  <img src="https://picsum.photos/1920/?image=1080" alt="" width="640" />
-</p>
-<p>
-  <a href="../" class="pseudo">トップへのリンク</a>
-</p>
-<p>
-  <a href="../1/">1へのリンク（軽いページ）</a>
-</p>
-<script src="../js/pseudo-ajax.js"></script>
-<script>
-  pseudoAjax()
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ajaxっぽい遷移表現 下層2</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>タイトル：ページ2</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque dicta
+        dolore dolorum eaque, eos facere fugit impedit magnam natus nemo
+        officia, pariatur tempore totam veritatis, voluptates. Cumque iure
+        magnam officiis!
+      </p>
+      <p>
+        <img src="https://picsum.photos/1920/?random" alt="" width="640" />
+        <img src="https://picsum.photos/1920/?random&blur" alt="" width="640" />
+        <img src="https://picsum.photos/1920/?image=1080" alt="" width="640" />
+      </p>
+      <p>
+        <a href="../" class="pseudo">トップへのリンク</a>
+      </p>
+      <p>
+        <a href="../1/">1へのリンク（軽いページ）</a>
+      </p>
+    </div>
+    <script src="../js/pseudo-ajax.js"></script>
+    <script>
+      pseudoAjax();
+    </script>
+  </body>
 </html>

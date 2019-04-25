@@ -1,11 +1,4 @@
-body{
+.wrapper{
     width: 640px;
     margin: 24px auto;
-}
-
-h1{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
 }
