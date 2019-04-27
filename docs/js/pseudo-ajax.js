@@ -36,9 +36,9 @@ function pseudoAjaxExe(
   tag = "a",
   loadingText = "Loading",
   loadingStyle = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-family:sans-serif",
-  beforeLoadStyle = "transform:translateY(16px);opacity:0",
-  afterLoadStyle = "transition:all 0.6s ease-in-out;transform:translateY(0px);opacity:1",
-  transitionStyle = "transition:all 0.6s ease-in-out;transform:translateY(16px);opacity:0"
+  beforeLoadStyle = "transform:translateY(16px);opacity:0;width:100vw;height:100vh;overflow:hidden;",
+  afterLoadStyle = "transition:transform 0.6s ease-in-out,opacity 0.6s ease-in-out;transform:translateY(0px);opacity:1;width:100vw;height:100vh;overflow:hidden;",
+  transitionStyle = "transition:transform 0.6s ease-in-out,opacity 0.6s ease-in-out;transform:translateY(16px);opacity:0;width:100vw;height:100vh;overflow:hidden;"
 ) {
   const body = document.getElementsByTagName("body")[0];
   const loadingDom = document.createElement("div");
@@ -49,7 +49,6 @@ function pseudoAjaxExe(
     //Loading文字
     loadingDom.textContent = loadingText;
     loadingDom.setAttribute("style", loadingStyle);
-    loadingDom.setAttribute("id", "loading");
     body.parentNode.insertBefore(loadingDom, body);
   });
 
@@ -57,9 +56,10 @@ function pseudoAjaxExe(
     //Loadingの文字削除
     body.parentNode.removeChild(loadingDom);
     //DOM構築完了時にフェードイン
-    document
-      .getElementsByTagName("body")[0]
-      .setAttribute("style", afterLoadStyle);
+    body.setAttribute("style", afterLoadStyle);
+    body.addEventListener("transitionend", () => {
+      body.setAttribute("style", "");
+    });
   };
 
   //セレクタークリック時にフェード付与
@@ -72,10 +72,10 @@ function pseudoAjaxExe(
       if (target !== "_blank") {
         //デフォルト挙動キャンセル
         e.preventDefault();
-        //const body = document.getElementsByTagName("body")[0];
         body.setAttribute("style", transitionStyle);
         //トランジッション終わったら、ページ遷移
         body.addEventListener("transitionend", () => {
+          body.parentNode.removeChild(body);
           location.href = href;
         });
       }

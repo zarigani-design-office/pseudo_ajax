@@ -11,27 +11,34 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <h1>タイトル：トップ</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque dicta
-      dolore dolorum eaque, eos facere fugit impedit magnam natus nemo officia,
-      pariatur tempore totam veritatis, voluptates. Cumque iure magnam officiis!
-    </p>
-    <p>
-      <img src="https://picsum.photos/1920/?random" alt="" width="640" />
-    </p>
-    <p>
-      <a href="./1/">1へのリンク（軽いページ）</a>
-    </p>
-    <p>
-      <a href="./2/" id="pseudo">2へのリンク（重ためのページ。ローディング発生）</a>
-    </p>
-    <p>
-      <a href="http://example.com" target="_blank">target="_blank"の場合は作動しない</a>
-    </p>
-    <script src="js/pseudo-ajax.min.js"></script>
+    <div class="wrapper">
+      <h1>タイトル：トップ</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque dicta
+        dolore dolorum eaque, eos facere fugit impedit magnam natus nemo
+        officia, pariatur tempore totam veritatis, voluptates. Cumque iure
+        magnam officiis!
+      </p>
+      <p>
+        <img src="https://picsum.photos/1920/?random" alt="" width="640" />
+      </p>
+      <p>
+        <a href="./1/">1へのリンク（軽いページ）</a>
+      </p>
+      <p>
+        <a href="./2/" id="pseudo"
+          >2へのリンク（重ためのページ。ローディング発生）</a
+        >
+      </p>
+      <p>
+        <a href="http://example.com" target="_blank"
+          >target="_blank"の場合は作動しない</a
+        >
+      </p>
+    </div>
+    <script src="js/pseudo-ajax.js"></script>
     <script>
-      pseudoAjax()
+      pseudoAjax();
     </script>
   </body>
 </html>
